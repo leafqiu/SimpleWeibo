@@ -1,0 +1,100 @@
+{layout name="index/layout"}
+<div class="container" style="padding-left: 8em; padding-right: 8em;">
+    <!-- 快速发表栏 -->
+    <div class="row">
+        <form method="POST" action="{:url('quick_publish')}" id="quick-publish">
+            <textarea rows="5" class="form-control">写下你现在的感受吧！不超过150字</textarea>
+            <br />
+            <input type="submit" id="quick-publish-submit" class="btn btn-primary" name="quick_publish_submit" value="发 表" />
+        </form>
+    </div>
+
+    <br />
+
+    <!-- 微博查看信息点击按钮组 -->
+    <div class="row">
+        <table class="table table-bordered" style="border-radius: 4px; background-color: #fff;">
+            <tr>
+                <td class="text-center"><a class="btn" href="{:url('view_all')}">全部微博</a></td>
+                <td class="text-center"><a class="btn" href="{:url('user_fellow')}">我的关注</a></td>
+                <td class="text-center"><a class="btn" href="{:url('view_hot')}">热门微博</a></td>
+                <td class="text-center"><a class="btn" href="{:url('user_publish')}">我的微博</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 微博列表 -->
+    <div class="row">
+        <div class="item-list">
+            <ul class="list-group">
+                <!-- 博文列表 - 正文 -->
+                <li class="list-group-item" class="weibo-content">
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#">
+                                <img src="__ROOT__/__STATIC__img/no_user_image.jpg" class="img-circle user-image-main">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><b>闷声发大财</b>&nbsp&nbsp&nbsp<small>LV.2</small></h4>
+                            <a href="#">查看详情</a>
+                            <br /><br />
+        
+                            <p>#批判一番# 所以说中国有句古话，叫闷声发大财，这是坠吼的！啊...识得唔识得啊？你们不要一天总想啊...弄个大新闻~~~又把我批判一番！你们啊，naive！</p>
+                            
+                            <p class="text-right">
+                                <a class="btn" href="#">赞 233</a>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <a class="btn" href="#">评论 3</a>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <a class="btn" href="#">转发 14</a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 博文列表 - 快速评论 -->
+                <li class="list-group-item" class="quick-reply">
+                    <form class="form-inline">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm" id="quick-reply-content" name="quick_reply" placeholder="快速评论" style="border: none; box-shadow: none;">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-sm"> 评 论 </button>
+                        </div>
+                    </form>
+                </li>
+
+                <!-- 博文列表 - 评论列表 -->
+                <li class="list-group-item" class="reply-list">
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#">
+                                <img src="__ROOT__/__STATIC__img/no_user_image.jpg" class="img-circle user-image-reply">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p><b>弄个大新闻</b>&nbsp：&nbsp炮决警告！</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item" class="reply-list">
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#">
+                                <img src="__ROOT__/__STATIC__img/no_user_image.jpg" class="img-circle user-image-reply">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <p><b>StayYoung</b>&nbsp：&nbsp子弹滞销，帮帮我们...</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

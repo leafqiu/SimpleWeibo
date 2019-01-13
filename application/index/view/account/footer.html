@@ -1,0 +1,31 @@
+    </body>
+
+    <script type="text/javascript">
+        $(function(){
+            $('#submit-login').on('click', function(){
+                // 用ajax提交用户信息，验证登录信息
+                $.ajax({
+                    type: 'post',
+                    url: "{:url('login_post')}",
+                    data: $('#login').serialize(),
+                    dataType: 'json',
+                    success: function(data){
+                        switch (data.status){
+                            case 1:  //登录成功跳到首页
+                                alert(data.message);
+                                window.location.href = "{:url('index/index')}";
+                            break;
+
+                            case 0:  //失败或验证不通过返回登录页
+
+                            case -1:
+                                alert(data.message);
+                                window.location.back();
+                            break;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</html>

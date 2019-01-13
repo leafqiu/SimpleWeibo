@@ -1,0 +1,78 @@
+{layout name="index/layout"}
+<div class="container" style="padding-left: 8em; padding-right: 8em;">
+    <!-- 我的关注列表 -->
+    <div class="row">
+        <ul class="list-group">
+            <!-- 关注列表 -->
+            <li class="list-group-item" class="weibo-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                    <img src="__ROOT__/__STATIC__img/no_user_image.jpg" class="img-circle user-image-main">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3>膜法大师</h3>
+                                <p>微博 5</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <h3>粉丝</h3>
+                        <h4>15</h4>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <h3>关注</h3>
+                        <h4>6</h4>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <br />
+                        <form method="POST" action="{:url('add_fellow')}" class="form-group-lg">
+                            <button class="btn btn-default" id="fellowed-btn">已关注</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item" class="weibo-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                    <img src="__ROOT__/__STATIC__img/no_user_image.jpg" class="img-circle user-image-main">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3>学习一个</h3>
+                                <p>微博 125</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <h3>粉丝</h3>
+                        <h4>241</h4>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <h3>关注</h3>
+                        <h4>45</h4>
+                    </div>
+
+                    <div class="col-md-2 text-center">
+                        <br />
+                        <form method="POST" action="{:url('add_fellow')}" class="form-group-lg">
+                            <button class="btn btn-default" id="fellowed-btn">已关注</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -13,7 +13,7 @@ namespace app\index\model;
 
 require "GstoreConnector.php";
 
-class WeiboModel {
+class Item {
 	private $username = "root";
 	private $password = "123456";
 	private $ip = "localhost";
@@ -27,26 +27,50 @@ class WeiboModel {
 	}
 
 	// 查询记录
-	public function get($sparql) {
-		if (!$sparql) {
+	public function get($select, $where, $prefix = [], $other = []) {
+		if (!$select || !$where) {
 			// empty query or null
 			return null;
 		}
+		$sparql = '';
+		foreach ($prefix as $key=>$value) {
+			$sparql .= "prefix $key: $value\n";
+		}
+		$spqrql .= "select $select from {$this->database} where {\n";
+		foreach ($where as $value) {
+			$sparql .= $value . "\n";
+		}
+		$sparql .= "}\n";
+		foreach ($other as $value) {
+			$sparql .= $value . "\n";
+		}
+
 		$json = $this->gc->query($this->username, $this->password, $this->databse, $sparql);
 		$res = json_decode($json);
 		if ($res->StatusCode == 0) {
-			// how to return: data format tranformation?
-			// TODO
+			$json_res = result2json($res);
+			return $json_res;
 		}
-		else
+		else {
 			return null;
+		}
 	}
 
 	// 新增记录
-	public function add($sparql) {
-		if (!$sparql) {
+	public function add($data, $prefix = []) {
+		if (!$data) {
 			return false;
 		}
+		$sparql = '';
+		foreach ($prefix as $key=>$value) {
+			$sparql .= "prefix $key: $value\n";
+		}
+		$sparql .= "insert into graph {$this->database} {\n";
+		foreach ($data as $value) {
+			$sparql .= $value . "\n";
+		}
+		$sparql .= "}"
+
 		$json = $this->gc->query($this->username, $this->password, $this->database, $sparql);
 		// $this->gc->checkpoint($this->database, $this->username, $this->password);
 		$res = json_decode($json);
@@ -54,13 +78,35 @@ class WeiboModel {
 	}
 
 	// 删除记录
-	public function delete($sparql) {
-		if (!$sparql)
+	public function delete($data, $prefix = []) {
+		if (!$data)
 			return false;
+		$sparql = '';
+		foreach ($prefix as $key => $value) {
+			$sparql .= "prefix $key: $value\n";
+		}
+		$sparql .= "delete from graph {$this->databse} {\n";
+		foreach ($data as $value) {
+			$sparql .= $value . "\n";
+		}
+		$sparql .= "}";
 		$json = $this->gc->query($this->username, $this->password, $this->database, $sparql);
 		// $this->gc->checkpoint($this->database, $this->username, $this->password);
 		$res = json_decode($json);
 		return ($res->StatusCode == 0);
+	}
+
+	private function result2json($result) {
+		$result_array = array();
+		$bindings = $result->results->bindings;
+		foreach ($bindings as $item) {
+			$item_array = array();
+			foreach ($item as $vars => $values) {
+				$item_array[$vars] = $values->value;
+			}
+			$result_array[] = $item_array;
+		}
+		return json_encode($result_array);
 	}
 }
 ?>

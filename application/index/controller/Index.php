@@ -33,14 +33,5 @@
             }
         }
 
-        // 显示关注用户列表
-        public function fellow() {
-            return $this->fetch();
-        }
-
-        // 显示粉丝列表
-        public function follower() {
-            return $this->fetch();
-        }
     }
 ?>

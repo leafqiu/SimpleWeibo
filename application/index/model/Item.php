@@ -18,7 +18,7 @@ class Item {
 	private $password = "123456";
 	private $ip = "localhost";
 	private $port = "2020";
-	private $databse = "weibodata";
+	private $database = "weibodata";
 	private $gc;
 	
 	// 构造函数，初始化GC对象
@@ -36,7 +36,7 @@ class Item {
 		foreach ($prefix as $key=>$value) {
 			$sparql .= "prefix $key: $value\n";
 		}
-		$spqrql .= "select $select from {$this->database} where {\n";
+		$sparql .= "select $select from {$this->database} where {\n";
 		foreach ($where as $value) {
 			$sparql .= $value . "\n";
 		}
@@ -69,7 +69,7 @@ class Item {
 		foreach ($data as $value) {
 			$sparql .= $value . "\n";
 		}
-		$sparql .= "}"
+		$sparql .= "}";
 
 		$json = $this->gc->query($this->username, $this->password, $this->database, $sparql);
 		// $this->gc->checkpoint($this->database, $this->username, $this->password);

@@ -6,7 +6,7 @@
     // +----------------------------------------------------------------------
     // | 说明：包含查看已关注用户和粉丝，以及关注其他用户和取消关注等操作
     // +----------------------------------------------------------------------
-    // | 版本：1.0_0115
+    // | 版本：Deprecated
     // +----------------------------------------------------------------------
 
 namespace app\index\controller
@@ -14,7 +14,7 @@ namespace app\index\controller
 use think\Controller;
 use think\Request;
 use think\Session;
-use app\index\model\Item
+use app\index\model\Item;
 
 class User extends Controller {
    // 显示关注用户列表

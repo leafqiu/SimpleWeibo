@@ -11,7 +11,7 @@
 
 namespace app\index\model;
 
-require "GstoreConnector.php";
+require_once "GstoreConnector.php";
 
 class Item {
 	private $username = "root";
@@ -23,7 +23,7 @@ class Item {
 	
 	// 构造函数，初始化GC对象
 	public function __construct() {
-		gc = new GstoreConnector($ip, $port);
+		$this->gc = new GstoreConnector($this->ip, $this->port);
 	}
 
 	// 查询记录
@@ -45,10 +45,10 @@ class Item {
 			$sparql .= $value . "\n";
 		}
 
-		$json = $this->gc->query($this->username, $this->password, $this->databse, $sparql);
+		$json = $this->gc->query($this->username, $this->password, $this->database, $sparql);
 		$res = json_decode($json);
 		if ($res->StatusCode == 0) {
-			$json_res = result2json($res);
+			$json_res = $this->result2json($res);
 			return $json_res;
 		}
 		else {
@@ -96,6 +96,7 @@ class Item {
 		return ($res->StatusCode == 0);
 	}
 
+	// 数据格式转换
 	private function result2json($result) {
 		$result_array = array();
 		$bindings = $result->results->bindings;

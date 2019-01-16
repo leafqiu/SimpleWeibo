@@ -6,7 +6,7 @@
     // +----------------------------------------------------------------------
     // | 说明：包含查看、发布和删除微博等操作
     // +----------------------------------------------------------------------
-    // | 版本：1.0_0113
+    // | 版本：Deprecated
     // +----------------------------------------------------------------------
 
 namespace app\index\controller
@@ -14,7 +14,7 @@ namespace app\index\controller
 use think\Controller;
 use think\Request;
 use think\Session;
-use app\index\model\Item
+use app\index\model\Item;
 
 class Weibo extends Controller {
 
